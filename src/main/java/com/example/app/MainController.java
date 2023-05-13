@@ -43,28 +43,52 @@ public class MainController {
         return "index";
     }
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewPatient (@RequestParam String hospName
-            , @RequestParam String hospCity
-            , @RequestParam Integer roomNo
-            , @RequestParam String firstName
-            , @RequestParam String lastName
-            , @RequestParam String disease
-            , @RequestParam Date dateOfPlacing) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
-        Patient n = new Patient();
-        n.setHospName(hospName);
-        n.setHospCity(hospCity);
-        n.setRoomNo(roomNo);
-        n.setFirstName(firstName);
-        n.setLastName(lastName);
-        n.setDisease(disease);
-        n.setDateOfPlacing(dateOfPlacing);
-        patientRepository.save(n);
-        return "Saved";
+    @RequestMapping("/patients/add")
+    public String addPatients() {
+        return "add-patients";
     }
+
+    @RequestMapping("/appointments/add")
+    public String addAppointments() {
+        return "add-appointments";
+    }
+
+    @PostMapping("/patients/save")
+    public void addPatient(@RequestParam("hospName") String hospName,
+                           @RequestParam("hospCity") String hospCity,
+                           @RequestParam("roomNo") int roomNo,
+                           @RequestParam("firstName") String firstName,
+                           @RequestParam("lastName") String lastName,
+                           @RequestParam("disease") String disease,
+                           @RequestParam("dateOfPlacing") Date dateOfPlacing
+                           ) {
+        patientService.addPatient(hospName, hospCity, roomNo, firstName, lastName, disease, dateOfPlacing);
+    }
+
+
+//    @PostMapping(path="/patients/save") // Map ONLY POST Requests
+//    @ResponseBody
+//    public String addNewPatient (@RequestParam String hospName
+//            , @RequestParam String hospCity
+//            , @RequestParam Integer roomNo
+//            , @RequestParam String firstName
+//            , @RequestParam String lastName
+//            , @RequestParam String disease
+//            , @RequestParam Date dateOfPlacing) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//
+//        Patient n = new Patient();
+//        n.setHospName(hospName);
+//        n.setHospCity(hospCity);
+//        n.setRoomNo(roomNo);
+//        n.setFirstName(firstName);
+//        n.setLastName(lastName);
+//        n.setDisease(disease);
+//        n.setDateOfPlacing(dateOfPlacing);
+//        patientRepository.save(n);
+//        return "Saved";
+//    }
 
     @RequestMapping(path = {"/patients","/patients/search"})
     public String listPatients(Model model, String keyword) {
