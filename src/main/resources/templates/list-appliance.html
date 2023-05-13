@@ -11,33 +11,25 @@
 <body>
 <div class="container mt-5">
     <h2 align="center">Search Patients</h2>
-    <form th:action="@{/demo/patients/search}" method="get">
-        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Patient Name or ID" size="50" >
+    <form th:action="@{/demo/appliance/search}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Type, Hospital Name, Hospital City or ID" size="50" >
         <button type="submit" class="btn btn-info" >Search</button>
     </form>
     <table class="table table-bordered table-sm mt-2">
         <thead>
         <tr>
-            <th>persID</th>
+            <th>ID</th>
             <th>hospName</th>
             <th>hospCity</th>
-            <th>roomNo</th>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>disease</th>
-            <th>dateOfPlacing</th>
+            <th>appType</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="l : ${list}" th:field="${l}">
-            <td th:text="${l.persID}"></td>
+            <td th:text="${l.ID}"></td>
             <td th:text="${l.hospName}"></td>
             <td th:text="${l.hospCity}"></td>
-            <td th:text="${l.roomNo}"></td>
-            <td th:text="${l.firstName}"></td>
-            <td th:text="${l.lastName}"></td>
-            <td th:text="${l.disease}"></td>
-            <td th:text="${l.dateOfPlacing}"></td>
+            <td th:text="${l.appType}"></td>
         </tr>
         </tbody>
     </table>

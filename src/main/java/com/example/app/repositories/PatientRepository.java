@@ -1,8 +1,8 @@
-package com.example.app;
+package com.example.app.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import com.example.app.Patient;
+import com.example.app.entities.Patient;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

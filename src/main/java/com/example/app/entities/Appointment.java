@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,5 +35,5 @@ public class Appointment {
     private String docFirstName;
 
     @Column(name = "docLastName", nullable = false)
-    private Date docLastName;
+    private String docLastName;
 }
